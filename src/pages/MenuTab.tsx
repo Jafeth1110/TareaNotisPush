@@ -39,10 +39,12 @@ import {
   peopleOutline,
   cloudOfflineOutline
 } from 'ionicons/icons';
-import { signOut } from 'firebase/auth';
-import { auth } from '../firebase';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth } from '../Services/firebase/config/firebaseConfig';
 import { useHistory } from 'react-router-dom';
 import { useRol } from '../context/RoleContext';
+import NotificationService from '../Services/nofication';
+import { authReady } from '../Services/firebase/config/firebaseConfig';
 
 const MenuTab: React.FC = () => {
   const history = useHistory();
@@ -53,6 +55,9 @@ const MenuTab: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [lastSync, setLastSync] = useState(new Date());
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [notificationCount, setNotificationCount] = useState(0);
+  const notificationService = NotificationService.getInstance();
 
   useEffect(() => {
     if (!auth.currentUser) {
@@ -63,6 +68,30 @@ const MenuTab: React.FC = () => {
   if (!auth.currentUser) {
     return null; // O un componente de carga
   }
+
+  useEffect(() => {
+    authReady.then(() => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+          notificationService.initialize(user.uid);
+        }
+      });
+
+      // Escuchar cambios
+      const removeListener = notificationService.addListener(() => {
+        setUnreadCount(notificationService.getUnreadCount());
+      });
+
+      // Estado inicial
+      setUnreadCount(notificationService.getUnreadCount());
+
+      return () => {
+        unsubscribe();
+        removeListener();
+      };
+    });
+  }, []);
+
 
   // Verificador de conexión
   useEffect(() => {
@@ -199,8 +228,11 @@ const MenuTab: React.FC = () => {
           <IonItem button routerLink="/notifications" detail>
             <IonIcon slot="start" icon={notificationsOutline} color="primary" />
             <IonLabel>Notificaciones</IonLabel>
-            <IonBadge color="danger">3</IonBadge>
+            {notificationCount > 0 && (
+              <IonBadge color="danger">{notificationCount}</IonBadge>
+            )}
           </IonItem>
+
 
           <IonItem button routerLink="/calendar" detail>
             <IonIcon slot="start" icon={calendarOutline} color="primary" />
@@ -215,11 +247,12 @@ const MenuTab: React.FC = () => {
           )}
 
 
-          <IonItem button routerLink="/messages" detail>
+          <IonItem button routerLink="/send-notification" detail>
             <IonIcon slot="start" icon={mailOutline} color="primary" />
             <IonLabel>Mensajes</IonLabel>
             <IonBadge color="warning">5</IonBadge>
           </IonItem>
+
         </IonList>
 
         {/* Lista de configuración y ayuda */}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IonContent, IonPage, IonInput, IonButton, IonItem, IonLabel, IonHeader, IonToolbar, IonTitle, IonLoading, IonToast, IonBackButton, IonButtons } from '@ionic/react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth } from '../Services/firebase/config/firebaseConfig';
 import { useHistory } from 'react-router-dom';
 import { getFirestore, collection, doc, setDoc } from 'firebase/firestore'; // 👈 Firestore
 

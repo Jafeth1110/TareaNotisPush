@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "371493504119-vup30d61r9c31lavr0adss9br8u96a4o.apps.googleusercontent.com",
+          "client_id": "371493504119-gkpadf5r5bkshgoirgkab6vj9ngd895g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "Jafeth.Espinoza",
+            "certificate_hash": "c3ec1dd767044cf5666e11e1eb3f6bb1597c2742"
+          }
+        },
+        {
+          "client_id": "371493504119-ih78q18hlth94sdi58kasigps96ldeqq.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,36 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "371493504119-vup30d61r9c31lavr0adss9br8u96a4o.apps.googleusercontent.com",
+              "client_id": "371493504119-ih78q18hlth94sdi58kasigps96ldeqq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371493504119:android:bac2e5771789f5f5c07272",
+        "android_client_info": {
+          "package_name": "com.jafeth.miapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371493504119-ih78q18hlth94sdi58kasigps96ldeqq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_79fc-9ubhYJrKC1x_ExShsjvYEOZSS0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371493504119-ih78q18hlth94sdi58kasigps96ldeqq.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

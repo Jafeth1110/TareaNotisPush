@@ -12,7 +12,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, triangle } from 'ionicons/icons';
-import { auth } from './firebase';
+import { auth } from './Services/firebase/config/firebaseConfig';
 import LoginTab from './pages/LoginTab';
 import MenuTab from './pages/MenuTab';
 import SignupTab from './pages/SignupTab';
@@ -35,6 +35,7 @@ import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import DocumentsPage from './pages/DocumentsPage';
 import DocumentDetailPage from './pages/DocumentDetailPage';
+import NotificationPage from './pages/NotificationPage';
 
 setupIonicReact();
 
@@ -88,6 +89,7 @@ const App: React.FC = () => {
                 </Route>
                 <Route path="/documents" component={DocumentsPage} exact />
                 <Route path="/documents/:id" component={DocumentDetailPage} exact />
+                <Route path="/send-notification" component={NotificationPage} exact />
 
               </IonRouterOutlet>
 

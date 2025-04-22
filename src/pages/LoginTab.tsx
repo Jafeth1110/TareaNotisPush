@@ -3,7 +3,7 @@ import { IonContent, IonPage, IonInput, IonButton, IonItem, IonLabel, IonHeader,
 import { logoGoogle } from 'ionicons/icons';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth } from '../Services/firebase/config/firebaseConfig';
 import { useHistory } from 'react-router-dom';
 import { useRol } from '../context/RoleContext';
 import { getFirestore, collection, query, where, getDocs} from 'firebase/firestore';
